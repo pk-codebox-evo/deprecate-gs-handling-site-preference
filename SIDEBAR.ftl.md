@@ -20,9 +20,11 @@ Site preference management is just one tool in a mobile developer's toolbox. You
 
 ### Concepts and technologies
 
+* [View Templates][u-view-templates]
 * [REST][u-rest]
 * [JSON][u-json]
 
+<@u_view_templates/>
 <@u_rest/>
 <@u_json/>
  
