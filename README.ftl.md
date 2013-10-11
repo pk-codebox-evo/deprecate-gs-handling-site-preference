@@ -50,7 +50,7 @@ Create a web controller
 
 In Spring, web endpoints are simply Spring MVC controllers. The following Spring MVC controller handles a GET request and returns a String indicating the type of the device:
 
-    <@snippet path="src/main/java/hello/SitePreferenceController.java" prefix="complete"/>
+    <@snippet path="src/main/java/hello/GreetingController.java" prefix="complete"/>
 
 For this example, rather than rely on a view (such as JSP) to render model data in HTML, this controller simply returns the data to be written directly to the body of the response. In this case, the data is a String that reads "Hello NORMAL site preference!" if the requesting client is a desktop browser. The [`@ResponseBody`] annotation tells Spring MVC to write the returned object into the response body, rather than to render a model into a view.
 

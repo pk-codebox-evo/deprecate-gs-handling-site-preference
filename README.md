@@ -72,7 +72,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 
 jar {
-    baseName = 'gs-device-detection'
+    baseName = 'gs-handling-site-preference'
     version =  '0.1.0'
 }
 
@@ -82,7 +82,7 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web:0.5.0.M4")
+    compile("org.springframework.boot:spring-boot-starter-web:0.5.0.M5")
     compile("org.springframework.mobile:spring-mobile-device:1.1.0.RELEASE")
     testCompile("junit:junit:4.11")
 }
@@ -162,7 +162,7 @@ Create a web controller
 
 In Spring, web endpoints are simply Spring MVC controllers. The following Spring MVC controller handles a GET request and returns a String indicating the type of the device:
 
-`src/main/java/hello/SitePreferenceController.java`
+`src/main/java/hello/GreetingController.java`
 ```java
 package hello;
 
@@ -172,11 +172,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class SitePreferenceController {
+public class GreetingController {
 
     @RequestMapping("/site-preference")
     public @ResponseBody String home(SitePreference sitePreference) {
-        return "Hello " + sitePreference.name() + " site preference!";
+		if (sitePreference != null) {
+        	return "Hello " + sitePreference.name() + " site preference!";
+        } else {
+        	return "SitePreference is not configured.";
+        }
     }
 
 }
