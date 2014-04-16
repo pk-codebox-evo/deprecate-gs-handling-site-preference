@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GreetingController {
 
     @RequestMapping("/site-preference")
-    public @ResponseBody String home(SitePreference sitePreference) {
-		if (sitePreference != null) {
-        	return "Hello " + sitePreference.name() + " site preference!";
+    public @ResponseBody
+    String home(SitePreference sitePreference) {
+        if (sitePreference != null) {
+            return "Hello " + sitePreference.name() + " site preference!";
         } else {
-        	return "SitePreference is not configured.";
+            return "SitePreference is not configured.";
         }
     }
 
