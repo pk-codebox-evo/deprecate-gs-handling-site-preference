@@ -57,21 +57,21 @@ include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/
 
 
 [[initial]]
-== Create a configuration class
+== Auto-configuration
 
-Use the following configuration class to tell Spring where it can find the endpoint controller class:
-
-`src/main/java/hello/SitePreferenceConfiguration.java`
-[source,java]
-----
-include::complete/src/main/java/hello/SitePreferenceConfiguration.java[]
-----
-
-This class subclasses {WebMvcConfigurerAdapter}[`WebMvcConfigurerAdapter`], which allows you to customize the configuration of a Spring MVC application. In this case, you add three classes, {DeviceResolverHandlerInterceptor}[`DeviceResolverHandlerInterceptor`], {SitePreferenceHandlerInterceptor}[`SitePreferenceHandlerInterceptor`] and {SitePreferenceMethodArgumentResolver}[`SitePreferenceMethodArgumentResolver`]. {DeviceResolverHandlerInterceptor}[`DeviceResolverHandlerInterceptor`] is an implementation of a {HandlerInterceptor}[`HandlerInterceptor`] which, as the name implies, intercepts a request to the application and determines the type of requesting device. After the device is resolved, the {SitePreferenceMethodArgumentResolver}[`SitePreferenceMethodArgumentResolver`] allows Spring MVC to use the resolved `SitePreference` object in a controller method.
+Spring Boot auto-configures three classes, {DeviceResolverHandlerInterceptor}[`DeviceResolverHandlerInterceptor`], {SitePreferenceHandlerInterceptor}[`SitePreferenceHandlerInterceptor`] and {SitePreferenceMethodArgumentResolver}[`SitePreferenceMethodArgumentResolver`]. {DeviceResolverHandlerInterceptor}[`DeviceResolverHandlerInterceptor`] is an implementation of a {HandlerInterceptor}[`HandlerInterceptor`] which, as the name implies, intercepts a request to the application and determines the type of requesting device. After the device is resolved, the {SitePreferenceMethodArgumentResolver}[`SitePreferenceMethodArgumentResolver`] allows Spring MVC to use the resolved `SitePreference` object in a controller method.
 
 Internally, {DeviceResolverHandlerInterceptor}[`DeviceResolverHandlerInterceptor`] examines the `User-Agent` header in the incoming request, and based on the header value, determines whether the request is coming from a normal (desktop) browser, a mobile (phone) browser, or a tablet browser. {DeviceResolverHandlerInterceptor}[`DeviceResolverHandlerInterceptor`] offers several entry points for overriding or customizing how a device is resolved.
 
-{SitePreferenceHandlerInterceptor}[`SitePreferenceHandlerInterceptor`] utilizes the detected device to determine a user's initial site preference. If the user prefers a different site, then that site preference and be used in subsequent requests to override the resolved device value. The site preference is set by passing a specific query string parameter in a request. Once received, the preference is persisted in a cookie for future reference. 
+{SitePreferenceHandlerInterceptor}[`SitePreferenceHandlerInterceptor`] utilizes the detected device to determine a user's initial site preference. If the user prefers a different site, then that site preference and be used in subsequent requests to override the resolved device value. The site preference is set by passing a specific query string parameter in a request. Once received, the preference is persisted in a cookie for future reference.
+
+Site preference functionality is enabled by default in Spring Boot when you include the Spring Mobile starter. However, it can be disabled by setting the following property to `false`:
+
+`src/main/resources/application.properties`
+[source,java]
+----
+include::complete/src/main/resources/application.properties[]
+----
 
 
 == Create a web controller
