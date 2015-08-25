@@ -123,3 +123,6 @@ image::images/respect-mobile-preference.png[The response for a tablet browser]
 
 Congratulations! You have just developed a simple web page that detects the type of device being used by a client and offers the option to prefer a different version of the site.
 
+
+include::https://raw.githubusercontent.com/spring-guides/getting-started-macros/master/footer.adoc[]
+
